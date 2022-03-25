@@ -11,12 +11,13 @@ public class ServidorCalculadora {
         ServerSocket serverSocket = new ServerSocket(1000);
         Socket s = serverSocket.accept();
 
+        //prepara los inputstream
         DataInputStream dis = new DataInputStream(s.getInputStream());
         DataOutputStream dos = new DataOutputStream(s.getOutputStream());
 
         while (true)
         {
-            String input = dis.readUTF();
+            String input = dis.readUTF(); //espera la cuenta del cliente
 
             if(input.equals("cerrar"))
                 break;
@@ -26,6 +27,7 @@ public class ServidorCalculadora {
 
             StringTokenizer str = new StringTokenizer(input);
 
+            //tokeniza el string, va pillando los operandos que son string y los pasa a int
             int operando1 = Integer.parseInt(str.nextToken());
             String operacion = str.nextToken();
             int operando2 = Integer.parseInt(str.nextToken());
@@ -49,7 +51,7 @@ public class ServidorCalculadora {
             }
             System.out.println("Enviando resultado...");
 
-            dos.writeUTF(Integer.toString(result));
+            dos.writeUTF(Integer.toString(result)); //envia el resultado como string al cliente
         }
     }
 }

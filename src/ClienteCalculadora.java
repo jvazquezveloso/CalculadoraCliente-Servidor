@@ -29,7 +29,7 @@ public class ClienteCalculadora {
 
             output.writeUTF(msg);
 
-            String str = input.readUTF();
+            String str = input.readUTF(); //creo el string espero a que el servidor lo envie de vuelta
             System.out.println("Solución :" + str);
         }
     }
